@@ -11,3 +11,46 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+autoload -Uz promptinit
+promptinit
+prompt powerlevel9k
+clear
+
+# Initializations
+
+#Initialiaze fasd
+eval "$(fasd --init auto)"
+alias c="fasd_cd -d"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+alias lc="colorls"
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator time)
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="olive"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="grey"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="navy"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="grey"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="navy"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="grey"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="navy"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="grey"
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="maroon"
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="grey"
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="maroon"
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="grey"
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND="olive"
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND="grey"
+POWERLEVEL9K_VIRTUALENV_FOREGROUND='fuchsia'
+POWERLEVEL9K_VIRTUALENV_BACKGROUND='grey'
+POWERLEVEL9K_STATUS_BACKGROUND='grey'
+POWERLEVEL9K_TIME_FOREGROUND='white'
+POWERLEVEL9K_TIME_BACKGROUND='grey'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+alias config='/usr/bin/git --git-dir=/home/kubaw/.cfg/ --work-tree=/home/kubaw'
