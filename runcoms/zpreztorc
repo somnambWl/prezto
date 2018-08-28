@@ -32,12 +32,12 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'directory' \
-  'fasd' \
   'python' \
   'ssh' \
   'spectrum' \
   'utility' \
   'completion' \
+  'fasd' \
   'git' \
   'prompt' \
   'syntax-highlighting' \

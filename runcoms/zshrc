@@ -5,6 +5,9 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+export TERM="xterm-256color"
+force_color_prompt=yes
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -19,9 +22,18 @@ clear
 
 # Initializations
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 #Initialiaze fasd
 eval "$(fasd --init auto)"
 alias c="fasd_cd -d"
+alias v='f -e vim' # quick opening files with vim
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -31,16 +43,23 @@ alias lc="colorls"
 source $(dirname $(gem which colorls))/tab_complete.sh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator time)
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B1'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B3'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context os_icon dir dir_writable vcs virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator time)
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="olive"
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="grey"
+POWERLEVEL9K_OS_ICON_FOREGROUND="white"
+POWERLEVEL9K_OS_ICON_BACKGROUND="grey"
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="navy"
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="grey"
 POWERLEVEL9K_DIR_HOME_FOREGROUND="navy"
 POWERLEVEL9K_DIR_HOME_BACKGROUND="grey"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="navy"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="grey"
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="grey"
 POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="maroon"
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="grey"
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="maroon"
@@ -52,5 +71,14 @@ POWERLEVEL9K_VIRTUALENV_BACKGROUND='grey'
 POWERLEVEL9K_STATUS_BACKGROUND='grey'
 POWERLEVEL9K_TIME_FOREGROUND='white'
 POWERLEVEL9K_TIME_BACKGROUND='grey'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_DIR_PATH_SEPARATOR=" $(print_icon 'LEFT_SUBSEGMENT_SEPARATOR') "
+POWERLEVEL9K_DIR_PATH_HIGHLIGHT_BOLD=false
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+# Not working yet, enable after nerd-fonts installation
+#POWERLEVEL9K_TIME_FORMAT="%D{%H:%M} \uE12E"
+#POWERLEVEL9K_VCS_GIT_ICON='\uE1AA'
+#POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uE1AA'
+POWERLEVEL9K_HIDE_BRANCH_ICON=true
 alias config='/usr/bin/git --git-dir=/home/kubaw/.cfg/ --work-tree=/home/kubaw'
